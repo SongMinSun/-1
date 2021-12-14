@@ -1,0 +1,22 @@
+@import "reset.css";
+
+.LOGIN {
+  margin-top: 100px;
+  text-align: center;
+}
+
+.LOGIN__TITLE {
+  font-size: 45px;
+}
+
+#login-form {
+  display: flex;
+  flex-direction: column;
+  margin: 60px 20px 20px 20px;
+}
+
+#login-form input {
+  padding: 10px 0px;
+  border: none;
+  width: 50%;
+}

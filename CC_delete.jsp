@@ -1,0 +1,316 @@
+<%@ page contentType="text/html;charset=utf-8" %>
+<%@ page import="java.sql.*" %>
+
+<script language = "javascript">
+
+function deleteCheck()
+  {
+   var form = document.deleteform;
+   
+   if( !form.password.value )
+   {
+    alert( "비밀번호를 적어주세요" );
+    form.password.focus();
+    return;
+   }
+ 		form.submit();
+  }
+</script>
+
+<%
+    String url = "jdbc:mysql://localhost:3306/mytest";
+    String user = "root";
+    String password= "light1223!";
+    Connection conn ;
+    int idx = Integer.parseInt(request.getParameter("idx"));
+
+%>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  
+    <title>MFBB, 목포 축제 게시판</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: HSGaeulSenggak20;
+      }
+      @font-face {
+        font-family: HSGaeulSenggak20;
+        src: url(https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/HSGaeulSenggak20.woff);
+      }
+      a {
+        text-decoration: none; /* 기본 밑줄을 제거합니다 */
+        color: #888;
+      }
+
+      /* Style the header */
+      .header {
+        background-color: #ffffff;
+        padding: 20px;
+        text-align: center;
+        margin: auto;
+        position: relative;
+        height: 215px;
+      }
+
+      /* Style the top navigation bar */
+      .topnav {
+        overflow: hidden;
+        background-color: #81c3f8;
+      }
+
+      /* Style the topnav links */
+      .topnav a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+      /* Change color on hover */
+      .topnav a:hover {
+        background-color: #ddd;
+        color: #81c3f8;
+      }
+
+      /* Create three unequal columns that floats next to each other */
+      .column {
+        float: left;
+        padding: 10px;
+      }
+
+      /* Left and right column */
+      .column.side {
+        background-color: hsl(208, 52%, 84%);
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 15%;
+      }
+
+      /* Middle column */
+      .column.middle {
+        width: 70%;
+      }
+
+      /* Clear floats after the columns */
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+
+      /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+      @media screen and (max-width: 600px) {
+        .column.side,
+        .column.middle {
+          width: 100%;
+        }
+      }
+      fieldset {
+        border: none; /* 기본 border 없애기(이 코드를 지우고 기본 border를 확인해보세요) */
+      }
+      .visually-hidden {
+        /* legend 안보이게 설정. 이렇게하면 접근성을 준수하면서 디자인을 해치지 않습니다. */
+        position: absolute !important;
+        height: 1px;
+        width: 1px;
+        overflow: hidden;
+        clip: rect(1px 1px 1px 1px);
+        clip: rect(1px, 1px, 1px, 1px);
+        white-space: nowrap;
+      }
+
+      .img_logo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      img {
+        width: 500px;
+      }
+
+      header > nav {
+        width: 100%;
+        height: 10%;
+        position: absolute;
+        bottom: 0px;
+      }
+
+      .footer {
+        background-color: hsl(207, 86%, 85%);
+        padding: 10px;
+        text-align: center;
+      }
+
+      .align {
+        margin: 10px;
+        margin-top: 20px;
+      }
+
+      .view div {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .view_com {
+        width: 45%;
+        height: 300px;
+        margin: 5px 20px;
+        border: none;
+        border-radius: 10px;
+        padding: 10px;
+        border-color: rgb(0, 0, 0, 0.4);
+        background-color: whitesmoke;
+        box-shadow: 0px 2px 13px 0px #000000;
+      }
+
+      .view_com__Img {
+        background-color: rgb(166, 194, 185);
+        height: 80%;
+        overflow: hidden;
+        margin: 0 auto;
+        border-bottom: 1px solid;
+        border-color: rgb(0, 0, 0, 0.3);
+      }
+
+      .view_com__Img_img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .view_com__Title {
+        background-color: whitesmoke;
+        align-items: center;
+        margin-top: 10px;
+        height: 10%;
+      }
+
+      .side_com {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+      .side_com__content {
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 150px;
+        height: 100px;
+
+        border-radius: 50px;
+        margin: 20px;
+        font-size: 20px;
+        color: white;
+        padding: 25px;
+        background-color: hsl(207, 45%, 72%);
+      }
+
+      li {
+        margin-bottom: 20px;
+      }
+      .delete_btn,
+      .cencle_btn {
+        background-color: #81c3f8;
+        border: none;
+        color: white;
+        padding: 16px 74px;
+        text-align: center;
+        font-size: 15px;
+        margin: 4px 2px;
+        display: inline-block;
+        text-decoration: none;
+        cursor: pointer;
+        float: right;
+      }
+
+      .input_pwd {
+        border: none;
+        border-bottom: 1px solid #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <a href="http://localhost:8080/MFBB.html"
+        ><img src="logo3.png" class="img_logo"
+      /></a>
+    </div>
+    <%
+
+    String uid = (String) session.getAttribute("uid");
+    if(session.getAttribute("uid")== null){
+
+    %>
+      <nav>
+      <div class="topnav">
+        <a href="MFBB.jsp">지역축제</a>
+        <a href="MFBB_C.jsp">커뮤니티</a>
+        <a href="FAQ_board.jsp">고객센터</a>
+        <a href="login.html" style="float: right">로그인</a>
+      </div>
+    </nav>
+    <%
+    } else {
+    %>
+    <nav>
+      <div class="topnav">
+        <a href="MFBB.jsp">지역축제</a>
+        <a href="MFBB_C.jsp">커뮤니티</a>
+        <a href="mypage.jsp">마이페이지</a>
+        <a href="FAQ_board.jsp">고객센터</a>
+        <a href="logout.html" style="float: right">로그아웃</a>
+        <a href="mypage.html" style="float: right"><%=uid%> 님 환영합니다.</a>
+      </div>
+    </nav>
+
+    <%
+    }
+    
+    %>
+    <div class="row">
+      <div class="column side"></div>
+
+      <div class="column middle">
+        <div class="inputpassword">
+          <form name="deleteform" method="post" action="CC_delete_ok.jsp?idx=<%=idx%>">
+            <input class="input_pwd" type="password" name="password" />
+
+            <input
+              class="delete_btn"
+              type="button"
+              value="삭제"
+              onclick="javascript:deleteCheck();"
+            />
+            <input
+              class="cencle_btn"
+              type="button"
+              value="취소"
+              onclick="javascript:history.back(-1)"
+            />
+          </form>
+        </div>
+      </div>
+
+      <div class="column side"></div>
+    </div>
+
+    <div class="footer">
+      <p>Footer</p>
+    </div>
+  </body>
+</html>

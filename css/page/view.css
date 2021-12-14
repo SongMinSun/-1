@@ -1,0 +1,38 @@
+.view-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 100%;
+}
+
+.view-info {
+  width: 100%;
+}
+.view-info :first-child {
+  display: flex;
+  width: 100%;
+}
+
+.view-id,
+.view-title {
+  display: flex;
+  align-items: center;
+  border-bottom: 3px solid #d3b5b5;
+}
+
+.view-id {
+  display: flex;
+  flex: 1;
+}
+
+
+.view-title {
+  display: flex;
+  flex: 8;
+}
+
+}
+
+.view-id__TEXT {
+  margin-right: 10px;
+}

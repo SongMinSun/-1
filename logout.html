@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head><title>LOGIN</title>
+<meta charset='utf-8'>
+<style>
+    * {
+        box-sizing: border-box;
+        margin:0;
+        padding:0;
+    }
+    li{
+        list-style:none;
+    }
+
+    body{
+        margin: 0;
+        font-family: HSGaeulSenggak20;
+    }
+    @font-face {
+        font-family: HSGaeulSenggak20;
+        src: url(https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/HSGaeulSenggak20.woff);
+    }
+    a {
+        text-decoration: none; /* 기본 밑줄을 제거합니다 */
+        color: #888;
+    }
+    body{
+        background-color: rgb(188, 224, 252);
+    }
+    h1{
+        font-size : 50px;
+        font-weight : normal;
+        color:white;
+        position:absolute;
+        top: 20px;
+        left: 250px;
+    }
+    .header {
+        height: 100px;
+        background-color: #81c3f8;
+        width: 100%;
+        z-index: 9999;
+    }
+    .box{
+        margin:30px;
+        border:100px solid white;
+    }
+    .column_middle {
+        float:center;
+        width: 70%;
+        margin-left:250px;
+        background-color: white;
+    }
+    .button {
+        background-color: black;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin: 4px 2px;
+        cursor: pointer;
+        font-size:12px;
+    }
+
+    
+
+</style>
+</head>
+<body>
+    <div class="header">
+        <h1>LOOUT</h1>
+    </div>
+    <div class="column_middle">
+        <form method="post" action="logout.jsp">
+            <br><br>
+            <h2 style="color :lightblue; font-weight: normal">로그아웃하시겠습니까?</h2>
+            <br>
+            <button class="button"><a href="logout.jsp">네</a></button>
+            <button class="button"><a href="main.html">아니오</button></a>
+        </form>
+    </div>
+</body>
+</html>

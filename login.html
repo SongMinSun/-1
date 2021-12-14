@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>회원가입</title>
+    <meta charset="utf-8" />
+    
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      li {
+        list-style: none;
+      }
+
+      body {
+        margin: 0;
+        font-family: HSGaeulSenggak20;
+      }
+      @font-face {
+        font-family: HSGaeulSenggak20;
+        src: url(https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/HSGaeulSenggak20.woff);
+      }
+      a {
+        text-decoration: none; /* 기본 밑줄을 제거합니다 */
+        color: #888;
+      }
+      body {
+        background-color: rgb(188, 224, 252);
+      }
+      h1 {
+        font-size: 50px;
+        font-weight: normal;
+        color: white;
+        position: absolute;
+        top: 20px;
+        left: 250px;
+      }
+      input[type="text"] {
+        width: 50%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+      }
+      input[type="email"] {
+        width: 50%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+      }
+      input[type="password"] {
+        width: 50%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+      }
+      .header {
+        height: 100px;
+        background-color: #81c3f8;
+        width: 100%;
+        z-index: 9999;
+      }
+      .box {
+        margin: 30px;
+        border: 100px solid white;
+      }
+      .column_middle {
+        float: center;
+        width: 70%;
+        margin-left: 250px;
+        background-color: white;
+      }
+    </style>
+    <script>
+      var toggle = false;
+      function passwd_toggle(field) {
+        var field = document.getElementById("passwd");
+        var img = document.getElementById("password_view");
+        if (field.type == "password") {
+          field.type = "text";
+          img.src = "view_on.png";
+        }
+        toggle = !toggle;
+      }
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <h1>LOGIN</h1>
+    </div>
+    <div class="column_middle">
+      <form method="post" action="login.jsp">
+        <br /><br />
+        <h2 style="font-weight: normal; color: lightblue; font-size: 25px">
+          메일
+        </h2>
+        <input type="email" name="email" required />
+        <br />
+        <h2 style="font-weight: normal; color: lightblue; font-size: 25px">
+          암호
+        </h2>
+        <input type="password" id="passwd" name="passwd" required />
+        <img
+          src="view_off.png"
+          width="30px"
+          id="password_view"
+          onclick="passwd_toggle()"
+        />
+        <br />
+        <br />
+        <input type="submit" value="로그인" />
+        <input type="reset" value="취  소" />
+        <a href="create.html">회원가입</a>
+      </form>
+    </div>
+  </body>
+</html>

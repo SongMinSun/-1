@@ -1,0 +1,278 @@
+<!DOCTYPE HTML>
+<html lang = "en">
+    <head>
+        <meta charset ='UTF-8' />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>MFBB, 목포축제 게시판</title>
+        <style>
+          * {
+                box-sizing: border-box;
+            }
+
+            li{
+                list-style: none;
+            }
+
+            body{
+                margin : 0;
+                font-family: HSGaeulSenggak20;
+            }
+            @font-face{
+                font-family: HSGaeulSenggak20;
+                src: url(https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/HSGaeulSenggak20.woff);
+            }
+
+            a{
+                text-decoration:none;
+                color:#888;
+            }
+
+            .header{
+                height:100px;
+                background-color: #81c3f8;
+                position: -webkit-sticky;
+                width:100%;
+                z-index: 9999;
+                top:0;
+                left:0;
+            }
+
+            .img_logo{
+                position: absolute;
+                height:auto;
+                transform:translate(-50%, -50%);
+                margin-left: 100px;
+                margin-top:50px;
+            }
+
+            img{
+                max-width:100;
+            }
+
+            h1{
+                color:white; line-height:75px;
+                float:left;
+            }
+            .menu{
+                float:right;
+            }
+            .menu li{
+                float:left;
+            }
+            .menu a{
+                line-height: 87px;
+                color:white;
+                padding:0 15px;
+                display:block;
+            }
+            .wrapper{
+                width:1500px;
+                margin:0 auto;
+            }
+            .clearfix{
+                content:'';
+                display:block;
+                clear:both;
+            }
+            .topnav{
+                overflow:hidden;
+                background-color:#333;
+            }
+            .topnav a:hover{
+                background-color:#ddd;
+                color:black;
+            }
+
+            .column{
+                float:left;
+                width:100%;
+                padding:15px;
+                background-color: rgb(188, 224, 252);
+                border:double #2292d3 5px;
+            }
+
+            .column1 {
+                width:100%;
+                padding:15px;
+                background-color:#81c3f8;
+            }
+
+            .column2 {
+                float: left;
+                width: 100%;
+                padding: 15px;
+                background-color: rgb(188, 224, 252);
+            }
+
+            /* Clear floats after the columns */
+            .row:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+
+            @media screen and (max-width:600px) {
+                .column{
+                    width:100%;
+                }
+            }
+            @media screen and (max-width:600px) {
+                .column1{
+                    width: 100%;
+                }
+            }
+            @media screen and (max-width:600px) {
+                .column2{
+                    width:100%;
+                }
+            }
+
+            .slider{
+                width: 600px;
+                height:600px;
+                position:relative;
+                margin:0 auto;
+            }
+            .slider input[type=radio]{
+                display: none;
+            }
+            ul.imgs{
+                padding:0;
+                margin:0;
+                max-width: 100%;
+                height:auto;
+                overflow:hidden;
+                object-fit:cover;
+            }
+            ul.imgs li{
+                position:absolute;
+                opacity:0;
+                list-style: none;
+                padding:0;
+                margin:0;
+                transition-delay:0.9s;
+            }
+            .bullets{
+                position:absolute;
+                left:50%;
+                transform:translateX(-50%);
+                bottom:20px;
+                z-index: 2;
+            }
+            .bullets label{
+                display: inline-block;
+                border-radius: 50%;
+                background-color: rgba(0,0,0,0.55);
+                width: 20px;
+                height: 20px;
+                cursor: pointer;
+            }
+            .slider input[type=radio]:nth-child(1):checked~.bullets>label:nth-child(1){
+                background-color: #fff;
+            }
+            .slider input[type=radio]:nth-child(2):checked~.bullets>label:nth-child(2){
+                background-color: #fff;
+            }
+            .slider input[type=radio]:nth-child(3):checked~.bullets>label:nth-child(3){
+                background-color: #fff;
+            }
+            .slider input[type=radio]:nth-child(4):checked~.bullets>label:nth-child(4){
+                background-color: #fff;
+            }
+            .slider input[type=radio]:nth-child(5):checked~.bullets>label:nth-child(5){
+                background-color: #fff;
+            }
+
+            .slider input[type=radio]:nth-child(1):checked~ul.imgs>li:nth-child(1){
+                opacity: 1;
+                transition: 1s;
+                z-index: 1;
+            }
+            .slider input[type=radio]:nth-child(2):checked~ul.imgs>li:nth-child(2){
+                opacity: 1;
+                transition: 1s;
+                z-index: 1;
+            }
+            .slider input[type=radio]:nth-child(3):checked~ul.imgs>li:nth-child(3){
+                opacity: 1;
+                transition: 1s;
+                z-index: 1;
+            }
+            .slider input[type=radio]:nth-child(4):checked~ul.imgs>li:nth-child(4){
+                opacity: 1;
+                transition: 1s;
+                z-index: 1;
+            }
+            .slider input[type=radio]:nth-child(5):checked~ul.imgs>li:nth-child(5){
+                opacity: 1;
+                transition: 1s;
+                z-index: 1;
+            }
+            .button {
+                background-color: rgb(73, 161, 212); 
+                border: 1px solid white;
+                color: white;
+                margin: 20px 10px;
+                width : 470px;
+                height : 100px;
+                float:left;
+                text-align: center;
+                text-decoration: none;
+                display: block;
+                border-radius: 20px;
+                font-size: 24px;
+                cursor: pointer;
+                font-family: HSGaeulSenggak20;
+                box-sizing: border-box;
+            }
+            .button:hover {
+                background-color: #2292d3;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <a href="main.html"
+              ><img src="mainlogo.png" class="img_logo" alt="메인로고" width="150" height="100"/>
+            </a>
+        </div>
+        <main>
+          <div class="row">
+            <div class="column">
+              <div class="slider">
+                <input type="radio" name="slide" id="slide1" checked>
+                <input type="radio" name="slide" id="slide2">
+                <input type="radio" name="slide" id="slide3">
+                <input type="radio" name="slide" id="slide4">
+                <input type="radio" name="slide" id="slide5">
+                <ul id="imgholder" class="imgs">
+                  <li><img src="./img/slide1.jpg" alt = "항구축제 포스터" width="600" height="600"></li>
+                  <li><img src="./img/slide2.jpg" alt = "전남국제수묵비엔날레" width="600" height="600"></li>
+                  <li><img src="./img/slide3.png" alt = "유달산 봄 축제" width="600" height="600"></li>
+                  <li><img src="./img/slide4.jpg" alt = "목포세계마당페스티벌" width="600" height="600"></li>
+                  <li><img src="./img/slide5.jpg" alt = "목포 해상 w쇼" width="600" height="600"></li>
+                </ul>
+                <div class="bullets">
+                    <label for="slide1">&nbsp;</label>
+                    <label for="slide2">&nbsp;</label>
+                    <label for="slide3">&nbsp;</label>
+                    <label for="slide4">&nbsp;</label>
+                    <label for="slide5">&nbsp;</label>
+                </div>
+              </div>
+            </div>            
+            <div class="column2">
+              <a href="MFBB.jsp"><button class="button">지역축제</button></a>
+              <a href="MFBB_C.jsp"><button class="button">커뮤니티</button></a>
+              <a href=#><button class="button">고객센터</button></a>
+
+            </div>
+          </div>
+        </main>
+        <footer>
+          <div class ="column1">
+            <h4 style="color:rgb(175, 175, 175)">목포대학교 F팀 허동윤 송민선</h4>
+          </div>
+        </footer>
+    </body>
+</html>
